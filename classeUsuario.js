@@ -1,4 +1,5 @@
 const prompt = require('prompt-sync')();
+const fs = require('fs');
 
 class Usuario{
 
@@ -81,10 +82,12 @@ class Sistema {
             this.usuarios.push(new Usuario(this.proximoIdUsuario, nome, email, senha, interesses))
             this.proximoIdUsuario++;
 
+            this.salvarArquivo();
             return "✅ Usuário cadastrado com sucesso!";
         }else{
             return "⚠️ Já existe um usuário cadastrado com esse e-mail.";
         }
+
     }
 
     login(email, senha) {
@@ -105,6 +108,29 @@ class Sistema {
         this.usuarioLogado = null;
         return "Você saiu da conta."
     }   
+
+    salvarArquivo(){
+        const dadosUsuarios = [];
+
+        for(let i = 0; i < this.usuarios.length; i++){
+            dadosUsuarios.push({id: this.usuarios[i].idUsuario, nome: this.usuarios[i].nome, email: this.usuarios[i].email, senha: this.usuarios[i].senha, interesses: this.usuarios[i].interesses});
+        }
+
+        let dadosEmString = JSON.stringify(dadosUsuarios, null, 2);
+        const arquivo = fs.writeFileSync('escambo.json', dadosEmString, 'utf-8');
+
+        return arquivo;
+    }
+
+    carregar(){
+        if(!fs.existsSync('./escambo.json')){
+            return
+        }else{
+            const leituraArquivo = fs.readFileSync("escambo.json", 'utf-8');
+            const objetoLeituraArquivo = JSON.parse(leituraArquivo);
+            return objetoLeituraArquivo;
+        }
+    }
 }
 
 const sistema = new Sistema();
@@ -117,6 +143,7 @@ console.log("===========================================");
 
 while (opcao !== 0) {
 
+    sistema.carregar();
     if (sistema.usuarioLogado === null) {
 
         console.log("\n---- MENU ----");
