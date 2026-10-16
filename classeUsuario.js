@@ -1,5 +1,7 @@
 const prompt = require('prompt-sync')();
 const fs = require('fs');
+const DB = require('better-sqlite3');
+const db = require('./dataBase');
 
 class Usuario{
 
@@ -58,6 +60,8 @@ class Sistema {
         this.categorias.push(new Categoria(2, "Roupas e Acessórios"));
         this.categorias.push(new Categoria(3, "Livros e Revistas"));
         this.categorias.push(new Categoria(4, "Esportes e Lazer"));
+
+        this.carregar();
     }
 
     pausar(){
@@ -81,7 +85,7 @@ class Sistema {
          if(this.posicaoDoEmail(email) == -1){
             this.usuarios.push(new Usuario(this.proximoIdUsuario, nome, email, senha, interesses))
             this.proximoIdUsuario++;
-
+            
             this.salvarArquivo();
             return "✅ Usuário cadastrado com sucesso!";
         }else{
@@ -101,6 +105,7 @@ class Sistema {
        }
 
        this.usuarioLogado = this.usuarios[this.posicaoDoEmail(email)];
+       console.log(this.posicaoDoEmail(email));
        return `✅ Bem-vindo(a), <${this.usuarios[this.posicaoDoEmail(email)].nomeUsuario}>!`;
     }
 
@@ -110,13 +115,9 @@ class Sistema {
     }   
 
     salvarArquivo(){
-        const dadosUsuarios = [];
 
-        for(let i = 0; i < this.usuarios.length; i++){
-            dadosUsuarios.push({id: this.usuarios[i].idUsuario, nome: this.usuarios[i].nome, email: this.usuarios[i].email, senha: this.usuarios[i].senha, interesses: this.usuarios[i].interesses});
-        }
+        let dadosEmString = JSON.stringify(this.usuarios, null, 2);
 
-        let dadosEmString = JSON.stringify(dadosUsuarios, null, 2);
         const arquivo = fs.writeFileSync('escambo.json', dadosEmString, 'utf-8');
 
         return arquivo;
@@ -128,7 +129,8 @@ class Sistema {
         }else{
             const leituraArquivo = fs.readFileSync("escambo.json", 'utf-8');
             const objetoLeituraArquivo = JSON.parse(leituraArquivo);
-            return objetoLeituraArquivo;
+            this.usuarios = objetoLeituraArquivo;
+            this.proximoIdUsuario = this.usuarios[this.usuarios.length - 1].idUsuario + 1;
         }
     }
 }
@@ -143,7 +145,6 @@ console.log("===========================================");
 
 while (opcao !== 0) {
 
-    sistema.carregar();
     if (sistema.usuarioLogado === null) {
 
         console.log("\n---- MENU ----");
@@ -165,7 +166,7 @@ while (opcao !== 0) {
             case 2:
                 const emailLogin = prompt("E-mail: ");
                 const senhaLogin = prompt("Senha: ");
-                sistema.login(emailLogin, senhaLogin);
+                console.log(sistema.login(emailLogin, senhaLogin));
                 sistema.pausar();
                 break;
             case 0:
