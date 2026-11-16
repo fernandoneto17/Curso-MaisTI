@@ -1,6 +1,289 @@
-/*Tela de Login:*/
+/* ================= RESET GERAL ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-div{
+body {
+    background-color: #f4f4f4;
+}
+
+/* ================= TELA 1: LOGIN ================= */
+.container-login {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card-login {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.campo-grupo label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.campo-grupo input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-entrar {
+    width: 100%;
+    padding: 12px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-entrar:hover {
+    background-color: #c9302c;
+}
+
+/* ================= TELA 2: HOME / CARDÁPIO ================= */
+.topo {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.topo-marca {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.logo-topo {
+    width: 80px;
+}
+
+.btn-carrinho {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-carrinho:hover {
+    background-color: #c9302c;
+}
+
+.container-menu {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.container-menu h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.grade-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.card-produto {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.card-produto img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.card-produto h3 {
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.card-produto p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.preco {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 12px;
+}
+
+.btn-adicionar {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-adicionar:hover {
+    background-color: #1b5e20;
+}
+
+/* ================= TELA 3: PAGAMENTO E ENDEREÇO ================= */
+.btn-voltar {
+    text-decoration: none;
+    color: #d9534f;
+    font-weight: bold;
+    border: 2px solid #d9534f;
+    padding: 8px 14px;
+    border-radius: 5px;
+}
+
+.btn-voltar:hover {
+    background-color: #d9534f;
+    color: white;
+}
+
+.container-pagamento {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    align-items: start;
+}
+
+.box-pagamento {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.box-pagamento h2 {
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #f4f4f4;
+    padding-bottom: 10px;
+}
+
+.lista-resumo {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.lista-resumo li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #444;
+}
+
+.total-pedido {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    color: #222;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.total-pedido strong {
+    color: #2e7d32;
+}
+
+/* Deixa Número e Bairro lado a lado */
+.linha-dupla {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+}
+
+.campo-grupo select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+}
+
+.btn-finalizar {
+    width: 100%;
+    padding: 14px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-finalizar:hover {
+    background-color: #1b5e20;
+}
+
+.btn-limpar {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-limpar:hover {
+    background-color: #fbe9e7;
 }
