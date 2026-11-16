@@ -1,38 +1,68 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="pt-BR">
 <head>
-    
-    <title>Esquina do Sabor</title>
-    <link rel="stylesheet" href="/frontend/css/styles.css">
- 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquina do Sabor - Cardápio</title>
+    <!-- Volta 1 pasta (../) para achar css/styles.css -->
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-
 <body>
-    <div>
-        <img src="/banco/imagens/logo.png" alt="Texto alternativo" width="400">
-    </div>
 
-    <div>
-        <form action="">
-            <label for="Login">Login:</label>
-            <input type="text" name="Login" id="botaoLogin">
-        </form>
-    </div>
+    <!-- Cabeçalho do restaurante -->
+    <header class="topo">
+        <div class="topo-marca">
+            <!-- Volta 2 pastas (../../) para achar banco/imagens/ -->
+            <img src="../../banco/imagens/logo.png" alt="Logo Esquina do Sabor" class="logo-topo">
+            <span id="boasVindas">Olá, Cliente!</span>
+        </div>
 
-    <div>
-        <form action="">
-            <label for="Senha">Senha:</label>
-            <input type="text" name="Senha" id="botaoSenha">
-        </form>
-    </div>
+        <button id="btnIrPagamento" class="btn-carrinho">
+            🛒 Ver Pedido (<span id="contadorCarrinho">0</span>)
+        </button>
+    </header>
 
-    <div>
-        <br>
-        <button>Enviar</button>
-    </div>
+    <!-- Área principal com os 3 itens do cardápio -->
+    <main class="container-menu">
+        <h1>Nosso Cardápio</h1>
 
+        <section class="grade-produtos">
+            <!-- Item 1: Coxinha -->
+            <article class="card-produto">
+                <img src="../../banco/imagens/coxinha.png" alt="Coxinha de Frango">
+                <h3>Coxinha Dourada</h3>
+                <p>Massa crocante por fora e recheio cremoso de frango temperado.</p>
+                <span class="preco">R$ 7,00</span>
+                <button class="btn-adicionar" onclick="adicionarAoCarrinho('Coxinha Dourada', 7.00)">
+                    + Adicionar
+                </button>
+            </article>
+
+            <!-- Item 2: Pastel -->
+            <article class="card-produto">
+                <img src="../../banco/imagens/pastel.png" alt="Pastel Frito">
+                <h3>Pastel Especial</h3>
+                <p>Pastel sequinho frito na hora com bastante recheio.</p>
+                <span class="preco">R$ 10,00</span>
+                <button class="btn-adicionar" onclick="adicionarAoCarrinho('Pastel Especial', 10.00)">
+                    + Adicionar
+                </button>
+            </article>
+
+            <!-- Item 3: Caldo de Cana -->
+            <article class="card-produto">
+                <img src="../../banco/imagens/caldo-de-cana.png" alt="Caldo de Cana">
+                <h3>Caldo de Cana Gelado</h3>
+                <p>Copo de 500ml moído na hora, super refrescante.</p>
+                <span class="preco">R$ 6,00</span>
+                <button class="btn-adicionar" onclick="adicionarAoCarrinho('Caldo de Cana Gelado', 6.00)">
+                    + Adicionar
+                </button>
+            </article>
+        </section>
+    </main>
+
+    <!-- Volta 1 pasta (../) para achar o script.js -->
+    <script src="../script.js"></script>
 </body>
-
 </html>
