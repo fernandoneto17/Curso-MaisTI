@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquina do Sabor - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
 
+    <main class="container-login">
+        <div class="card-login">
+            <!-- O "../" faz o navegador sair da pasta frontend para achar a pasta banco -->
+            <img src="../banco/imagens/logo.png" alt="Logo Esquina do Sabor" class="logo">
+
+            <form id="formLogin">
+                <div class="campo-grupo">
+                    <label for="login">Login:</label>
+                    <input type="text" id="login" name="login" placeholder="Digite seu usuário" required>
+                </div>
+
+                <div class="campo-grupo">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                </div>
+
+                <button type="submit" class="btn-entrar">Entrar</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Aponta direto para o script.js que está na mesma pasta frontend -->
+    <script src="script.js"></script>
+</body>
+</html>
